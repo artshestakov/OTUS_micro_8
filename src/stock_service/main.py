@@ -23,8 +23,8 @@ def reserve_stock():
 # ----------------------------------------------------------------------------------------------------------------------
 @app.route('/stock/release', methods=['POST'])
 def release_stock():
-    data = request.json
-    order_id = data['order_id']
+
+    order_id = request.json['order_id']
 
     # Если такой заказ есть в резерве - снимаем
     if order_id in reservations:

@@ -17,7 +17,7 @@ def reserve_delivery():
     # Формируем
     timeslots[timeslot] = order_id
     deliveries[order_id] = {
-        'address': data['address'],
+        'address': data['address'], # В боевом примере можно сделать проверку адреса по ФИАС
         'timeslot': timeslot,
         'status': 'reserved'
     }
@@ -26,8 +26,8 @@ def reserve_delivery():
 # ----------------------------------------------------------------------------------------------------------------------
 @app.route('/delivery/cancel', methods=['POST'])
 def cancel_delivery():
-    data = request.json
-    order_id = data['order_id']
+
+    order_id = request.json['order_id']
 
     # Если такой есть - удаляем
     if order_id in deliveries:
